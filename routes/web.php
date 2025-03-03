@@ -5,9 +5,13 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\GameController;
 
 
-Route::get('/', function (GameController $gameController) {
+Route::get('/', function (GameController $gameController, TeamController $teamController) {
     $games = $gameController->gamesToday();
-    return view('dashboard.index', compact('games'));
+    $eastTeams = $teamController->getConferenceTeams('East');
+    $westTeams = $teamController->getConferenceTeams('West');
+    $randomTeam = $teamController->getRandomTeam();
+
+    return view('dashboard.index', compact('games', 'eastTeams', 'westTeams', 'randomTeam'));
 })->name('home');
 
 Route::get('/games', function () {
