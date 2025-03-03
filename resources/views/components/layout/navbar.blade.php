@@ -42,7 +42,7 @@
         </nav>
     </header>
 
-    <main>
+    <main class="w-full max-w-8/10 mx-auto py-8">
         {{ $slot }}
     </main>
 
