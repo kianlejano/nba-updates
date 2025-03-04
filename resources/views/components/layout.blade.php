@@ -6,13 +6,13 @@
     @vite('resources/css/app.css')
     <title>{{ config('app.name') }}</title>
 </head>
-<body>
+<body class="w-full min-h-screen dark:bg-gray-900">
     <header>
        <nav class="navbar">
             <div class="nav-container">
                 <a href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="{{ asset('images/logo.svg') }}" class="h-16" alt="Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                    <span class="app-name">
                         {{ config('app.name') }}
                     </span>
                 </a>
@@ -42,8 +42,10 @@
         </nav>
     </header>
 
-    <main class="w-full max-w-8/10 mx-auto py-8">
-        {{ $slot }}
+    <main class="w-full min-h-screen dark:bg-gray-900">
+        <div class="max-w-8/10 mx-auto py-8">
+            {{ $slot }}
+        </div>
     </main>
 
     <script>
