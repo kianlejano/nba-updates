@@ -12,7 +12,7 @@
     </div>
 
     <div class="flex flex-col gap-x-2 mt-2">
-        <p class="app-name">{{ $team['full_name'] }}</p>
+        <p class="app-name truncate">{{ $team['full_name'] }}</p>
         <p class="{{ $team['conference'] === 'East' ? 'bg-blue-800' : 'bg-red-800' }} dark:text-white w-fit rounded-sm px-1">
             {{ $team['abbreviation'] }}
         </p>

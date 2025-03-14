@@ -31,7 +31,7 @@
                         md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white 
                         dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         
-                        @foreach(config('menu.nav_links') as $link)
+                        @foreach(config('menu.NAV_LINKS') as $link)
                             <a href="{{ route($link['route']) }}" class="nav-link">
                                 {{ $link['name'] }}
                             </a>
