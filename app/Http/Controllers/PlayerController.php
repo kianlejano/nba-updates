@@ -2,24 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
-    // public function teamOfTheDay($conference)
-    // {
-    //     $apiKey = config('services.nba_api.key');
-    //     $baseUrl = config('services.nba_api.base_url');
+    public function teamPlayers($teamId, $cursor = null, $name = null)
+    {
+        $apiKey = config('services.nba_api.key');
+        $baseUrl = config('services.nba_api.base_url');
 
-    //     if(!$conference) $conference = 'East';
+        $queryParams = [
+            'team_ids[]' => $teamId,
+            'per_page' => 20,
+        ];
 
-    //     $response = Http::withHeaders([
-    //         'Authorization' => $apiKey,
-    //         'Accept' => 'application/json',
-    //     ])->get("$baseUrl/players", [
-    //         '' => $conference,
-    //     ]);
+        if ($cursor) {
+            $queryParams['cursor'] = $cursor;
+        }
 
-    //     return $response->successful() ? $response->json()['data'] : [];
-    // }
+        if($name){
+            $queryParams['search'] = $name;
+        }
+
+        $response = Http::withHeaders([
+            'Authorization' => $apiKey,
+            'Accept' => 'application/json',
+        ])->get("$baseUrl/players", $queryParams);
+
+        return $response->successful() ? $response->json() : [];
+    }
+
 }

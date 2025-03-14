@@ -3,31 +3,31 @@
         $teamFilters = config('menu.TEAM_FILTER');
     @endphp
     <div class="p-4">
-        <form method="GET" action="{{ route('teams') }}" class="flex flex-wrap justify-end gap-1 mb-4 dark:text-white">
+        <form method="GET" action="{{ route('teams') }}" class="flex flex-wrap justify-center lg:justify-end gap-1 mb-4 dark:text-white">
 
-            <select name="conference" class="p-2 rounded-md w-full sm:w-64 dark:bg-gray-800">
+            <select name="conference" class="p-2 rounded-md w-full md:w-64 dark:bg-gray-800">
                 <option value="">All Conferences</option>
                 @foreach ($teamFilters as $filter)
                     <option value="{{ $filter['conference'] }}" 
-                        {{ request('conference') === $filter['conference'] ? 'selected' : '' }}>
+                        {{ request('conference') == $filter['conference'] ? 'selected' : '' }}>
                         {{ $filter['conference'] }}
                     </option>
                 @endforeach
             </select>
 
-            <select name="division" class="p-2 rounded-md w-full sm:w-64 dark:bg-gray-800">
+            <select name="division" class="p-2 rounded-md w-full md:w-64 dark:bg-gray-800">
                 <option value="">All Divisions</option>
                 @foreach ($teamFilters as $filter)
                     @foreach ($filter['divisions'] as $division)
                         <option value="{{ $division }}" 
-                            {{ request('division') === $division ? 'selected' : '' }}>
+                            {{ request('division') == $division ? 'selected' : '' }}>
                             {{ $division }}
                         </option>
                     @endforeach
                 @endforeach
             </select>
 
-            <button type="submit" class="text-white px-4 py-2 rounded-md w-full sm:w-17 dark:bg-blue-800 dark:hover:bg-blue-600">
+            <button type="submit" class="text-white px-4 py-2 rounded-md w-full md:w-17 dark:bg-blue-800 dark:hover:bg-blue-600">
                 Filter
             </button>
 

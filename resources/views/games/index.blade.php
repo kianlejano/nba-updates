@@ -1,18 +1,18 @@
 <x-layout>
     <div class="p-4">
-        <form method="GET" action="{{ route('games') }}" class="flex justify-end gap-1 mb-4 dark:text-white">
+        <form method="GET" action="{{ route('games') }}" class="flex flex-wrap justify-end gap-1 mb-4 dark:text-white">
             <input 
                 type="text"
                 id="date"
                 name="date" 
                 value="{{ $date ?? '' }}"
-                class="text-center p-2 rounded-md w-full sm:w-64 dark:bg-gray-800"
+                class="p-2 rounded-md w-full sm:w-64 dark:bg-gray-800"
                 placeholder="Pick a date to view games"
                 onfocus="showDatePicker(this)" 
                 onblur="resetInputType(this)"
                 onclick="showDatePicker(this)"
             >
-            <button type="submit" class="text-white px-4 py-2 rounded-md sm:w-17 dark:bg-blue-800 dark:hover:bg-blue-600">
+            <button type="submit" class="text-white px-4 py-2 rounded-md w-full sm:w-17 dark:bg-blue-800 dark:hover:bg-blue-600">
                 Filter
             </button>
         </form>

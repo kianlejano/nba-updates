@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PlayerController;
 
 
 Route::get('/', function (GameController $gameController, TeamController $teamController) {
@@ -43,6 +44,21 @@ Route::get('/teams', function (Request $request, TeamController $teamController)
     return view('teams.index', compact('teams'));
 })->name('teams');
 
-Route::get('/players', function () {
-    return view('players.index');
+Route::get('/players', function (Request $request, TeamController $teamController, PlayerController $playerController) {
+
+    $eastTeams = $teamController->getConferenceTeams('East');
+    $westTeams = $teamController->getConferenceTeams('West');
+    $teams = array_merge($eastTeams, $westTeams);
+    usort($teams, fn($a, $b) => strcmp($a['full_name'], $b['full_name']));
+
+    $teamId = $request->query('team') ?? 1;
+    $cursor = $request->query('cursor') ?? null;
+    $name = $request->query('name') ?? null;
+
+    $playerResponse = $playerController->teamPlayers($teamId, $cursor, $name);
+    $players = $playerResponse['data'] ?? [];
+    $nextCursor = $playerResponse['meta']['next_cursor'] ?? null;
+
+    return view('players.index', compact('teams', 'players', 'teamId', 'nextCursor'));
+    
 })->name('players');
