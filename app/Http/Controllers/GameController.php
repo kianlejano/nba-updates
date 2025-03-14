@@ -7,9 +7,13 @@ use Carbon\Carbon;
 
 class GameController extends Controller
 {
-    public function gamesToday()
+    public function gamesToday($date = null)
     {
-        $today = Carbon::now('Asia/Manila')->subDay()->format('Y-m-d'); // subtract 1 day because dates are in US timezone
+        if ($date) {
+            $date = Carbon::parse($date, 'Asia/Manila')->subDay()->format('Y-m-d');
+        } else {
+            $date = Carbon::now('Asia/Manila')->subDay()->format('Y-m-d');
+        }
         $apiKey = config('services.nba_api.key');
         $baseUrl = config('services.nba_api.base_url');
 
@@ -17,7 +21,7 @@ class GameController extends Controller
             'Authorization' => $apiKey,
             'Accept' => 'application/json',
         ])->get("$baseUrl/games", [
-            'dates[]' => $today,
+            'dates[]' => $date,
         ]);
 
         $games = $response->successful() ? $response->json()['data'] : [];
