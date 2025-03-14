@@ -22,8 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::directive('toPhTime', function ($datetime) {
-            return "<?php echo \Carbon\Carbon::parse($datetime)->setTimezone('Asia/Manila')->format('h:i A'); ?>";
-        });
+       //
     }
 }

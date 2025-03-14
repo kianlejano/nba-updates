@@ -14,8 +14,11 @@ Route::get('/', function (GameController $gameController, TeamController $teamCo
     return view('dashboard.index', compact('games', 'eastTeams', 'westTeams', 'randomTeam'));
 })->name('home');
 
-Route::get('/games', function () {
-    return view('games.index');
+Route::get('/games', function (GameController $gameController) {
+    $date = request()->query('date');
+    $games = $gameController->gamesToday($date);
+    
+    return view('games.index', compact('games', 'date'));
 })->name('games');
 
 Route::get('/teams', function () {
