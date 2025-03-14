@@ -35,8 +35,10 @@
         @if (!empty($teams) && count($teams) > 0)
             <div class="grid grid-cols-4 gap-4">
                 @foreach ($teams as $team)
-                    <div class="dashboard-card col-span-4 md:col-span-2 lg:col-span-1">
-                        <x-teams.random :team="$team"></x-teams.random>
+                    <div class="dashboard-card hover-enlarge col-span-4 md:col-span-2 lg:col-span-1">
+                        <a href="{{ route('players', ['team' => $team['id']]) }}">
+                            <x-teams.random :team="$team"></x-teams.random>
+                        </a>
                     </div>
                 @endforeach
             </div>

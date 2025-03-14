@@ -5,9 +5,12 @@
 @endphp
 
 @if (!empty($gamesToday) && count($gamesToday) > 0)
-     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2">
+    <div class="my-4 text-xs truncate dark:text-gray-400">
+        All game times and results are in Philippine Standard Time.
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2">
         @foreach ($gamesToday as $game)
-        <div class="flex flex-col grid-cols-3 grid-rows-3 grid-style">
+        <div class="flex flex-col grid-cols-3 grid-rows-3 grid-style hover:cursor-pointer hover-enlarge">
             <div @class(['game-card', 'font-bold text-green-500' => ($game['home_team_score'] > $game['visitor_team_score'] && $game['time'] == 'Final')])>
                 <div class="flex flex-row">
                     <img src="{{ asset('images/team-logos/' . ($teamLogos[$game['home_team']['id']] ?? 'nba-logo.svg')) }}" alt="Team Logo" class="score-logo">
@@ -33,9 +36,6 @@
             </div>
         </div>
         @endforeach
-     </div>
-     <div class="mt-4 text-xs text-center dark:text-gray-400">
-        All game times and results are in Philippine Standard Time.
     </div>
 @else
     <p class="empty">No games scheduled for this date.</p>

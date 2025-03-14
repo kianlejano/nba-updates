@@ -8,7 +8,7 @@
     @if (!empty($players) && count($players) > 0)
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-2">
             @foreach ($players as $player)
-                <div class="grid grid-flow-col grid-cols-6 grid-rows-2 p-2 border-b-2 shadow-xl rounded-md border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:border-red-800">
+                <div class="grid grid-flow-col grid-cols-6 grid-rows-2 p-2 border-b-2 shadow-xl rounded-md border-gray-200 hover-enlarge dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:border-red-800">
                     <div class="col-span-1 row-span-2 flex justify-center items-center font-bold px-2 rounded-sm text-3xl dark:bg-gray-900 ">
                         {{ $player['jersey_number'] ?? '--' }}
                     </div>
