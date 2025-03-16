@@ -23,8 +23,14 @@
                 $teamId = request('team') ?? 1;
                 $selectedTeam = collect($teams)->firstWhere('id', $teamId);
             @endphp
-            <div class="dashboard-card col-span-3 lg:col-span-1 h-full max-h-120">
-                <x-teams.random :team="$selectedTeam"></x-teams.random>
+            <div class="flex flex-col gap-4 col-span-3 lg:col-span-1">
+                <div class="dashboard-card">
+                    <x-teams.random :team="$selectedTeam"></x-teams.random>
+                </div>
+               <a href="{{ route('games.show', ['id' => $upcomingGame['id']]) }}">
+                    <div class="app-name text-center mb-4 p-2 dark:bg-red-800 dark:hover:bg-red-600 rounded-md">Upcoming Game</div>
+               </a>
+               {{-- <pre>{{ json_encode($upcomingGame, JSON_PRETTY_PRINT) }}</pre> --}}
             </div>
             <div class="col-span-3 lg:col-span-2 h-full">
                 <div class="dashboard-card">

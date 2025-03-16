@@ -23,6 +23,11 @@ Route::get('/games', function (Request $request, GameController $gameController)
     return view('games.index', compact('games', 'date'));
 })->name('games');
 
+Route::get('games/{id}', function ($id, GameController $gameController) {
+    $game = $gameController->findById($id);
+    return view('games.show', compact('game'));
+})->name('games.show');
+
 Route::get('/teams', function (Request $request, TeamController $teamController) {
     $conference = $request->query('conference');
     $division = $request->query('division');
@@ -44,7 +49,7 @@ Route::get('/teams', function (Request $request, TeamController $teamController)
     return view('teams.index', compact('teams'));
 })->name('teams');
 
-Route::get('/players', function (Request $request, TeamController $teamController, PlayerController $playerController) {
+Route::get('/players', function (Request $request, TeamController $teamController, PlayerController $playerController, GameController $gameController) {
 
     $eastTeams = $teamController->getConferenceTeams('East');
     $westTeams = $teamController->getConferenceTeams('West');
@@ -59,6 +64,8 @@ Route::get('/players', function (Request $request, TeamController $teamControlle
     $players = $playerResponse['data'] ?? [];
     $nextCursor = $playerResponse['meta']['next_cursor'] ?? null;
 
-    return view('players.index', compact('teams', 'players', 'teamId', 'nextCursor'));
+    $upcomingGame = $gameController->upcomingGame($teamId);
+
+    return view('players.index', compact('teams', 'players', 'teamId', 'upcomingGame', 'nextCursor'));
     
 })->name('players');

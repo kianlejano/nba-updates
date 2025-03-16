@@ -32,7 +32,7 @@
                         dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         
                         @foreach(config('menu.NAV_LINKS') as $link)
-                            <a href="{{ route($link['route']) }}" class="nav-link">
+                            <a href="{{ route($link['route']) }}" class="nav-link {{ Route::is($link['route']) ? 'nav-active' : '' }}">
                                 {{ $link['name'] }}
                             </a>
                         @endforeach
