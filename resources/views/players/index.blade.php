@@ -11,7 +11,7 @@
                 @endforeach
             </select>
 
-            <input type="text" id="name" name="name" value="{{ request('name') ?? '' }}" class="p-2 rounded-md w-full sm:w-64 dark:bg-gray-800" placeholder="Search Player">
+            <input type="text" id="name" name="name" value="{{ request('name') ?? '' }}" class="p-2 rounded-md w-full md:w-64 dark:bg-gray-800" placeholder="Search Player">
 
             <button type="submit" class="dark:text-white px-4 py-2 rounded-md w-full md:w-17 dark:bg-blue-800 dark:hover:bg-blue-600">
                 Filter

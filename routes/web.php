@@ -62,3 +62,8 @@ Route::get('/players', function (Request $request, TeamController $teamControlle
     return view('players.index', compact('players', 'teamId', 'upcomingGame', 'nextCursor'));
     
 })->name('players');
+
+Route::get('players/{id}', function ($id, PlayerController $playerController) {
+    $player = $playerController->findById($id);
+    return view('players.show', compact('player'));
+})->name('players.show');

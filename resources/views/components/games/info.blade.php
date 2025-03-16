@@ -36,4 +36,6 @@
             <div class="{{ $game['visitor_team']['conference'] === 'East' ? 'bg-blue-800' : 'bg-red-800' }} rounded-sm px-1">{{ $game['visitor_team']['abbreviation'] }}</div>
         </div>
     </div>
+@else
+    <div class="dashboard-card empty">No game information available.</div>
 @endif
