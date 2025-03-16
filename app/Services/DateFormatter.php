@@ -16,6 +16,11 @@ class DateFormatter
         return Carbon::parse($datetime)->setTimezone('Asia/Manila')->format('h:i A');
     }
 
+    public static function formatDatePH($datetime)
+    {
+        return Carbon::parse($datetime)->setTimezone('Asia/Manila')->format('l, F j, Y');
+    }
+
     public static function checkTodayOrTomorrow($date)
     {
         $carbonDate = Carbon::parse($date);

@@ -7,7 +7,7 @@
 
 @if (!empty($team) && count($team) > 0)
 <div class="flex flex-col">
-    <div class="flex justify-center items-center p-2 h-6/10 bg-gray-700 rounded-md">
+    <div class="flex justify-center items-center p-2 h-6/10 dark:bg-gray-700 rounded-md">
         <img src="{{ asset('images/team-logos/' . $logoFile) }}" alt="Team Logo" class="w-50 h-50">
     </div>
 

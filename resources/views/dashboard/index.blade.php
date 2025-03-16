@@ -10,11 +10,11 @@
             </div>
             <div class="dashboard-card md:col-span-4">
                 <div class="app-name text-center mb-4 p-2 dark:bg-red-800 rounded-md">West</div>
-                <x-teams.conference :teams="$westTeams"></x-teams.conference>
+                <x-teams.conference :teams="$globalTeams->west"></x-teams.conference>
             </div>
             <div class="dashboard-card md:col-span-4">
                 <div class="app-name text-center mb-4 p-2 dark:bg-blue-800 rounded-md">East</div>
-                <x-teams.conference :teams="$eastTeams"></x-teams.conference>
+                <x-teams.conference :teams="$globalTeams->east"></x-teams.conference>
             </div>
         </div>
     </div>

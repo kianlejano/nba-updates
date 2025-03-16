@@ -9,11 +9,9 @@ use App\Http\Controllers\PlayerController;
 
 Route::get('/', function (GameController $gameController, TeamController $teamController) {
     $games = $gameController->gamesToday();
-    $eastTeams = $teamController->getConferenceTeams('East');
-    $westTeams = $teamController->getConferenceTeams('West');
     $randomTeam = $teamController->getRandomTeam();
 
-    return view('dashboard.index', compact('games', 'eastTeams', 'westTeams', 'randomTeam'));
+    return view('dashboard.index', compact('games', 'randomTeam'));
 })->name('home');
 
 Route::get('/games', function (Request $request, GameController $gameController) {
@@ -22,6 +20,11 @@ Route::get('/games', function (Request $request, GameController $gameController)
     
     return view('games.index', compact('games', 'date'));
 })->name('games');
+
+Route::get('games/{id}', function ($id, GameController $gameController) {
+    $game = $gameController->findById($id);
+    return view('games.show', compact('game'));
+})->name('games.show');
 
 Route::get('/teams', function (Request $request, TeamController $teamController) {
     $conference = $request->query('conference');
@@ -44,12 +47,7 @@ Route::get('/teams', function (Request $request, TeamController $teamController)
     return view('teams.index', compact('teams'));
 })->name('teams');
 
-Route::get('/players', function (Request $request, TeamController $teamController, PlayerController $playerController) {
-
-    $eastTeams = $teamController->getConferenceTeams('East');
-    $westTeams = $teamController->getConferenceTeams('West');
-    $teams = array_merge($eastTeams, $westTeams);
-    usort($teams, fn($a, $b) => strcmp($a['full_name'], $b['full_name']));
+Route::get('/players', function (Request $request, TeamController $teamController, PlayerController $playerController, GameController $gameController) {
 
     $teamId = $request->query('team') ?? 1;
     $cursor = $request->query('cursor') ?? null;
@@ -59,6 +57,13 @@ Route::get('/players', function (Request $request, TeamController $teamControlle
     $players = $playerResponse['data'] ?? [];
     $nextCursor = $playerResponse['meta']['next_cursor'] ?? null;
 
-    return view('players.index', compact('teams', 'players', 'teamId', 'nextCursor'));
+    $upcomingGame = $gameController->upcomingGame($teamId);
+
+    return view('players.index', compact('players', 'teamId', 'upcomingGame', 'nextCursor'));
     
 })->name('players');
+
+Route::get('players/{id}', function ($id, PlayerController $playerController) {
+    $player = $playerController->findById($id);
+    return view('players.show', compact('player'));
+})->name('players.show');
