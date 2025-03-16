@@ -9,11 +9,9 @@ use App\Http\Controllers\PlayerController;
 
 Route::get('/', function (GameController $gameController, TeamController $teamController) {
     $games = $gameController->gamesToday();
-    $eastTeams = $teamController->getConferenceTeams('East');
-    $westTeams = $teamController->getConferenceTeams('West');
     $randomTeam = $teamController->getRandomTeam();
 
-    return view('dashboard.index', compact('games', 'eastTeams', 'westTeams', 'randomTeam'));
+    return view('dashboard.index', compact('games', 'randomTeam'));
 })->name('home');
 
 Route::get('/games', function (Request $request, GameController $gameController) {
@@ -51,11 +49,6 @@ Route::get('/teams', function (Request $request, TeamController $teamController)
 
 Route::get('/players', function (Request $request, TeamController $teamController, PlayerController $playerController, GameController $gameController) {
 
-    $eastTeams = $teamController->getConferenceTeams('East');
-    $westTeams = $teamController->getConferenceTeams('West');
-    $teams = array_merge($eastTeams, $westTeams);
-    usort($teams, fn($a, $b) => strcmp($a['full_name'], $b['full_name']));
-
     $teamId = $request->query('team') ?? 1;
     $cursor = $request->query('cursor') ?? null;
     $name = $request->query('name') ?? null;
@@ -66,6 +59,6 @@ Route::get('/players', function (Request $request, TeamController $teamControlle
 
     $upcomingGame = $gameController->upcomingGame($teamId);
 
-    return view('players.index', compact('teams', 'players', 'teamId', 'upcomingGame', 'nextCursor'));
+    return view('players.index', compact('players', 'teamId', 'upcomingGame', 'nextCursor'));
     
 })->name('players');
