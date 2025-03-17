@@ -13,7 +13,7 @@
             <div class="px-4 mt-4 rounded-sm dark:bg-gray-700 text-2xl text-center">HOME</div>
             <div class="text-5xl">{{ $game['home_team_score'] }}</div> 
             <div class="font-bold text-3xl text-center">{{ $game['home_team']['full_name'] }}</div>
-            <div class="{{  $game['home_team']['conference'] === 'East' ? 'bg-blue-800' : 'bg-red-800' }} rounded-sm px-1">{{ $game['home_team']['abbreviation'] }}</div>
+            <div class="{{  $game['home_team']['conference'] === 'East' ? 'bg-blue-700 dark:bg-blue-800' : 'bg-red-700 dark:bg-red-800' }} text-white rounded-sm px-1">{{ $game['home_team']['abbreviation'] }}</div>
         </div>
 
         <div class="game-team-info">
@@ -33,7 +33,7 @@
             <div class="px-4 mt-4 rounded-sm dark:bg-gray-700 text-2xl text-center">AWAY</div>
             <div class="text-5xl">{{ $game['visitor_team_score'] }}</div>
             <div class="font-bold text-3xl text-center">{{ $game['visitor_team']['full_name'] }}</div>
-            <div class="{{ $game['visitor_team']['conference'] === 'East' ? 'bg-blue-800' : 'bg-red-800' }} rounded-sm px-1">{{ $game['visitor_team']['abbreviation'] }}</div>
+            <div class="{{ $game['visitor_team']['conference'] === 'East' ? 'bg-blue-700 dark:bg-blue-800' : 'bg-red-700 dark:bg-red-800' }} text-white rounded-sm px-1">{{ $game['visitor_team']['abbreviation'] }}</div>
         </div>
     </div>
 @else

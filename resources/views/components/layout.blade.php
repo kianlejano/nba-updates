@@ -48,6 +48,14 @@
         </div>
     </main>
 
+    <footer class="footer">
+        <p>Data provided by <a href="https://www.balldontlie.io/" target="_blank" class="font-bold text-blue-700 dark:text-blue-800">Ball Don't Lie API</a>.</p>
+        <p>Developed by <a href="https://github.com/kianlejano" target="_blank" class="font-bold">Kian Lejano</a>.</p>
+        <p class="italic text-[10px] mt-1 text-gray-400">
+            This site is a personal project built to enhance my skills in API development and the Laravel Framework. It is not affiliated with, endorsed by, or sponsored by the National Basketball Association (NBA) or any of its teams. All NBA team names, logos, and trademarks are the property of their respective owners.
+        </p>
+    </footer>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const toggleButton = document.querySelector("[data-collapse-toggle]");
