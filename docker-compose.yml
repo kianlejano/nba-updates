@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:
-      - .:/var/www/html
+      - laravel-data:/var/www/html
     ports:
       - "8000:8000"
     environment:
@@ -15,4 +15,6 @@ services:
       - APP_DEBUG=${APP_DEBUG}
       - APP_KEY=${APP_KEY}
       - NBA_API_KEY=${NBA_API_KEY}
-    command: php artisan serve --host=0.0.0.0 --port=8000
+
+volumes:
+  laravel-data:
