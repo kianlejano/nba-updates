@@ -44,6 +44,11 @@
 }
 
 
+/* Footer Style */
+.footer{
+    @apply py-4 px-2 text-xs text-center bg-white border-t border-gray-200 dark:text-white dark:border-gray-800 dark:bg-gray-900;
+}
+
 /* Dashboard Styles */
 
 .dashboard-card {
