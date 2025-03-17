@@ -68,7 +68,7 @@ class GameController extends Controller
         });
     
         foreach($games as $game){
-            if($game['status'] != 'Final'){
+            if($game['status'] != 'Final' && !$game['time']){
                 return $game;
             }
         }

@@ -11,32 +11,32 @@
                 <div class="col-span-1 flex flex-col justify-center items-center gap-y-4 p-2">
                     <img src="{{ asset('images/team-logos/' . ($teamLogos[$player['team']['id']] ?? 'nba-logo.svg')) }}" alt="Team Logo" class="w-20"">
                     <div class="font-bold text-4xl">{{ $player['position'] ?? '' }}</div>
-                    <div class="font-bold text-4xl">{{ $player['jersey_number'] ?? '' }}</div>
+                    <div class="font-bold text-4xl"># {{ $player['jersey_number'] ?? '--' }}</div>
                 </div>
-                <div class="col-span-3 dark:bg-gray-700 flex justify-center items-end rounded-md">
+                <div class="col-span-3 bg-gray-200 dark:bg-gray-700 flex justify-center items-end rounded-md">
                     <img src="{{ asset('images/profile.svg') }}" alt="profile" class="w-40 h-40"">
                 </div>
             </div>
             <div class="font-extrabold text-center text-4xl">{{ $player['first_name'] }} {{ $player['last_name'] }}</div>
             <div class="flex flex-row justify-between gap-0">
-                <div class="flex justify-center w-1/3 dark:bg-gray-700 rounded-l-md">Height</div>
-                <div class="flex justify-center font-bold w-2/3 dark:bg-gray-600 rounded-r-md">{{ \App\Services\UnitFormatter::footToMeter($player['height']) ?? 'NA' }} m</div>
+                <div class="player-description">Height</div>
+                <div class="player-info">{{ \App\Services\UnitFormatter::footToMeter($player['height']) ?? '--' }} {{ $player['height'] ? 'm' : '' }}</div>
             </div>
             <div class="flex flex-row justify-between gap-0">
-                <div class="flex justify-center w-1/3 dark:bg-gray-700 rounded-l-md">Weight</div>
-                <div class="flex justify-center font-bold w-2/3 dark:bg-gray-600 rounded-r-md">{{ \App\Services\UnitFormatter::poundToKg($player['weight']) ?? 'NA' }} kg</div>
+                <div class="player-description">Weight</div>
+                <div class="player-info">{{ \App\Services\UnitFormatter::poundToKg($player['weight']) ?? '--' }} {{ $player['weight'] ? 'kg' : '' }}</div>
             </div>
             <div class="flex flex-row justify-between gap-0">
-                <div class="flex justify-center w-1/3 dark:bg-gray-700 rounded-l-md">College</div>
-                <div class="flex justify-center font-bold w-2/3 dark:bg-gray-600 rounded-r-md">{{ $player['college'] }}</div>
+                <div class="player-description">College</div>
+                <div class="player-info">{{ $player['college'] }}</div>
             </div>
             <div class="flex flex-row justify-between gap-0">
-                <div class="flex justify-center w-1/3 dark:bg-gray-700 rounded-l-md">Country</div>
-                <div class="flex justify-center font-bold w-2/3 dark:bg-gray-600 rounded-r-md">{{ $player['country'] }}</div>
+                <div class="player-description">Country</div>
+                <div class="player-info">{{ $player['country'] }}</div>
             </div>    
             <div class="flex flex-row justify-between gap-0">
-                <div class="flex justify-center w-1/3 dark:bg-gray-700 rounded-l-md">Draft</div>
-                <div class="flex justify-center font-bold w-2/3 dark:bg-gray-600 rounded-r-md">
+                <div class="player-description">Draft</div>
+                <div class="player-info">
                     @if(!$player['draft_year'] || !$player['draft_round'] || !$player['draft_number'])
                         Undrafted
                     @else

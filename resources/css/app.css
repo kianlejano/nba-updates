@@ -47,7 +47,7 @@
 /* Dashboard Styles */
 
 .dashboard-card {
-    @apply p-4 border rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white
+    @apply p-4 rounded-lg border bg-gray-100 border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-white
 }
 
 
@@ -71,20 +71,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* Team Styles */
 
 .team-description {
-    @apply dark:bg-gray-700 rounded-sm px-2 flex flex-row w-fit;
+    @apply bg-gray-300 dark:bg-gray-700 rounded-sm px-2 flex flex-row w-fit;
 }
 
 .team-info{
     @apply font-bold w-full border-b shadow-xl rounded-r-md border-gray-200 dark:border-gray-700;
 }
 
+/* Player Styles */
+
+.player-description{
+    @apply flex justify-center w-1/3 bg-gray-300 dark:bg-gray-700 rounded-l-md
+}
+.player-info{
+    @apply flex justify-center font-bold w-2/3 bg-gray-200 dark:bg-gray-600 rounded-r-md
+}
 
 /* Common */
 .empty{
     @apply flex justify-center items-center
 }
 .grid-style{
-    @apply p-4 border-b-2 shadow-xl rounded-md border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:border-red-800
+    @apply p-4 border-b-2 shadow-xl rounded-md border-gray-200 hover:bg-gray-200 hover:border-red-500 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:border-red-800
 }
 .hover-enlarge {
     @apply transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:cursor-pointer;
@@ -92,5 +100,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .hover-enlarge-no-shadow {
     @apply transition-transform duration-300 hover:scale-105 hover:cursor-pointer;
+}
+
+.filter-button {
+    @apply text-white px-4 py-2 rounded-md w-full sm:w-17 bg-blue-700 hover:bg-blue-800 dark:bg-blue-800 dark:hover:bg-blue-600 hover:cursor-pointer
 }
 
