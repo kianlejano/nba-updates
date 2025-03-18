@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: nba-updates-container
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:8000"
+    environment:
+      - APP-NAME=${APP-NAME}
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_KEY=${APP_KEY}
+      - NBA_API_KEY=${NBA_API_KEY}
+    command: php artisan serve --host=0.0.0.0 --port=8000
