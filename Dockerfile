@@ -20,7 +20,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --no-dev --optimize-autoloader
 
 # Install & build frontend assets
-RUN npm install && npm run build
+RUN npm install 
+
+RUN npm run build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
