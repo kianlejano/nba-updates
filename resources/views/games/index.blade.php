@@ -16,7 +16,7 @@
                 Filter
             </button>
         </form>
-        <div class="app-name mx-2 py-4">
+        <div class="text-2xl font-semibold text-center dark:text-white mx-2 py-4">
             <p>
                 {{ \App\Services\DateFormatter::weekdayMonthDay($date) }} 
                 @if (\App\Services\DateFormatter::checkTodayOrTomorrow($date) != '')
