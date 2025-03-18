@@ -5,7 +5,7 @@
 @endphp
 
 @if (!empty($gamesToday) && count($gamesToday) > 0)
-    <div class="my-4 text-xs truncate text-gray-600 dark:text-gray-400">
+    <div class="my-4 text-xs text-center text-gray-600 dark:text-gray-400">
         All game times and results are in Philippine Standard Time.
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2">
