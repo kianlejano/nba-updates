@@ -21,6 +21,17 @@ Route::get('/games', function (Request $request, GameController $gameController)
     return view('games.index', compact('games', 'date'));
 })->name('games');
 
+Route::get('games/schedules', function (Request $request, GameController $gameController, TeamController $teamController) {
+    $month = $request->query('month');
+    $year = $request->query('year');
+    $teamId = $request->query('team');
+
+    $games = $gameController->getSchedules($teamId, $month, $year);
+    $team = $teamController->findById($teamId);
+
+    return view('games.schedules', compact('games', 'team'));
+})->name('games.schedules');
+
 Route::get('games/{id}', function ($id, GameController $gameController) {
     $game = $gameController->findById($id);
     return view('games.show', compact('game'));

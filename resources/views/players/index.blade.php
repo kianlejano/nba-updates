@@ -27,9 +27,12 @@
                 <div class="dashboard-card">
                     <x-teams.random :team="$selectedTeam"></x-teams.random>
                 </div>
+                <a href="{{ route('games.schedules', ['team' => $selectedTeam['id']]) }}" class="flex justify-center">
+                    <div class="text-center text-xl font-bold p-2 w-3/4  text-white bg-red-700 hover:bg-red-800 dark:bg-red-800 dark:hover:bg-red-600 rounded-md hover-enlarge-no-shadow">Game Schedules</div>
+                </a>
                 @if($upcomingGame)
                     <a href="{{ route('games.show', ['id' => $upcomingGame['id']]) }}" class="flex justify-center">
-                        <div class="text-center text-xl font-bold mb-4 p-2 w-3/4  text-white bg-red-700 hover:bg-red-800 dark:bg-red-800 dark:hover:bg-red-600 rounded-md hover-enlarge-no-shadow">Upcoming Game</div>
+                        <div class="text-center text-xl font-bold p-2 w-3/4  text-white bg-red-700 hover:bg-red-800 dark:bg-red-800 dark:hover:bg-red-600 rounded-md hover-enlarge-no-shadow">Upcoming Game</div>
                    </a>
                 @endif
                {{-- <pre>{{ json_encode($upcomingGame, JSON_PRETTY_PRINT) }}</pre> --}}
