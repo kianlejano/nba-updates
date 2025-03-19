@@ -7,6 +7,19 @@ use Illuminate\View\View;
 
 class TeamController extends Controller
 {
+    public function findById($id)
+    {
+        $apiKey = config('services.nba_api.key');
+        $baseUrl = config('services.nba_api.base_url');
+
+        $response = Http::withHeaders([
+            'Authorization' => $apiKey,
+            'Accept' => 'application/json',
+        ])->get("$baseUrl/teams/$id");
+
+        return $game = $response->successful() ? $response->json()['data'] : null;
+    }
+
     public function getTeams(): View
     {
         $apiKey = config('services.nba_api.key');
